@@ -45,7 +45,7 @@ function chart4_update(selectedVar) {
   update_svg_4_y_label(selectedVar)
 
   // Parse the Data
-  d3.csv("data/meal_types.csv", function(data) {
+  d3.csv("meal_types.csv", function(data) {
     // X axis
     x.domain(data.map(function(d) { return d.meal_type; }))
     xAxis4.transition().duration(1000).call(d3.axisBottom(x))
