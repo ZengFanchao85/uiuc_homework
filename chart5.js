@@ -54,7 +54,7 @@ function chart5_update(selectedVar) {
   update_y_label(selectedVar)
 
   // Parse the Data
-  d3.csv("data/average_book_price_per_month.csv", function(data) {
+  d3.csv("average_book_price_per_month.csv", function(data) {
     // X axis
     x.domain(data.map(function(d) { return d.month; }))
     xAxis5.transition().duration(1000).call(d3.axisBottom(x))
