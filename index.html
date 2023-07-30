@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CS416 Narrative Visualization Project</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+
+  <!-- Font Awesome Icon CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  <div class="container">
+    <div id="presentation-area">
+      <section class="presentation">
+        
+        <div class="slide show">
+          <div class="heading">
+            CS 416 Data Visualization project
+          </div>
+          <div class="content grid center">
+            <h3 class="title">
+              Create a <br /> Narrative Visualization
+            </h3>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="heading">
+            Overview
+          </div>
+          <div class="content grid center">
+            <h3 class="title">
+              Analysis of Hotel Reservation Data 
+            </h3>
+            <p>Zeng Fanchao</p>
+          </div>
+        </div>
+  
+        <div class="slide">
+          <div class="heading">
+            About the Data
+          </div>
+          <div class="content">
+            <There>The data is avaliable at https://www.kaggle.com/datasets/vanthanadevi08/hotel-reservation-dataset. There are in total 36276 booking details from year 2017 to 2018. The booking methods contain: Offline, Online, Corporate, Aviation and Complementary.</p>
+  
+            <In>The useful information of the booking information includes number of adults and number of children and number of weekdays and number of weekend days booked. In addition, it also provides exact arrival year, month and date inclusing room type and meal type. It also includes if the booking is cancelled in the end and the guests' past history in terms of booking cancellation.</p>
+
+            <p>We are interested to explore: if there are any pattern in terms of booking month and day for different booking methods.</p>
+
+            <p>We are interested to explore if there are any particular meal plan or room type popular.</p>
+
+            <p>We are interested to explore if there are any booking methods which can always give most competitive booking price.</p>
+          </div>
+        </div>
+  
+        <div class="slide">
+          <div class="heading">
+            Essay (Part 1)
+          </div>
+          <div class="content">
+            <p>Messaging: We would like to focus on different booking methods namely Online, Offline, Corporate, Complementary, Aviation and Total. We would like to know in terms of arrival month/date, meal type, room type and booking price, does it make any difference based on the booking method. Given the breakdown is typically categorical and the variable is continuous, Bar Chart is used. </p>
+            <p>Narrative Structure: To convey the message above, we used Hybrid Structure. This narrative visualization follows an interactive slideshow hybrid structure to illustrate the impact of different booking methods. In each slide, reader can drill down on one area by change to different booking methods. The structure is author-driven and delivers the message stronger.</p>
+            <p>Visual Structure: The graph and annotations/parameters/triggers among the slides are consistently and each slide focus on one area to compare the different booking methods. Each slide focuses on one area where the booking method could impact. By focusing on one area with clear title, reader can easily understand the key concepts. More importantly, the message we want to pass is written explicitly with results highlighted also. Reader can easily navigate by click on the button to move to the next or previous page. </p>
+          </div>
+        </div>
+  
+        <div class="slide">
+          <div class="heading">
+            Essay (Part 2)
+          </div>
+          <div class="content">
+            <p>Scenes: Five Scenes are chosen in this visualization using consistent template and layout. Each slide can be navigated through the navigation bar on the top of the page or arrows at the left or right. The focus of each scene is provided upon entering the slide.</strong> </p>
+            <p>Annotations: The annotations are used to illustrate the impact of booking method on arrival month/date and booking price. The annotation does not change on a single scene. We would like to focus on the message on each page whereas at the same time provide the flexibility for readers to navigate around the page.</p>
+            <p>Parameters: The parameters are different booking method and the parameter can be used to define the state and trigger the change of the state.</p>
+            <p>Triggers: There are two triggers which allow user to change the state of the narrative visualization. The first trigger is the slide page change. The affordances are provided as user go to the right bottom of the webpage and the slide button can be clicked to move to the next page. The page number on the left bottom will tell the reader the exact page. The second trigger the booking method button. By default, we display the first booking method, Aviation when first go to the webpage. The y-axis label will also indicate the exact booking method show in the graph. The reader can also click on the different booking methods such as Complementary, Corporate, Offline, Online and Total to switch to view the graph under other booking methods. Moreover, when the mouse is above the button, the button will give the shade to let the reader know that the button can be clicked. After the click, animation is added to refresh the page with updated graph.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="heading">
+            Hotel Reservation Distribution by Month
+          </div>
+          <div class="content">
+            <ul>
+              <li>The month <strong>April, May and October</strong> has the greatest number of bookings in Aviation.</li>
+              <li>The month <strong>October</strong> has the greatest number of bookings in Total. </li>
+            </ul>
+            <p></p>
+            <button onclick="chart1_update('Aviation')">Aviation</button>
+            <button onclick="chart1_update('Complementary')">Complementary</button>
+            <button onclick="chart1_update('Corporate')">Corporate</button>
+            <button onclick="chart1_update('Offline')">Offline</button>
+            <button onclick="chart1_update('Online')">Online</button>
+            <button onclick="chart1_update('Total')">Total</button>
+            <svg id="my_dataviz_chart1"></svg>
+            <script src="scripts/chart1.js"></script>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="heading">
+            Hotel Reservation Distribution by Date
+          </div>
+          <div class="content">
+            <ul>
+              <li>The hotel reservation by date for <strong>Aviation</strong> shows clear booking pattern as below.</li>
+              <li>The hotel reservation by date in <strong>Total</strong> is <strong>evenly distributed</strong>.</li>
+            </ul>
+            <button onclick="chart2_update('Aviation')">Aviation</button>
+            <button onclick="chart2_update('Complementary')">Complementary</button>
+            <button onclick="chart2_update('Corporate')">Corporate</button>
+            <button onclick="chart2_update('Offline')">Offline</button>
+            <button onclick="chart2_update('Online')">Online</button>
+            <button onclick="chart2_update('Total')">Total</button>
+            <svg id="my_dataviz_chart2"></svg>
+            <script src="chart2.js"></script>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="heading">
+            Hotel Reservation Distribution by Meal Types
+          </div>
+          <div class="content">
+            <ul>
+              <li>The <strong>Aviation</strong> booking concentrates on Meal Plan <strong>1</strong>.</li>
+              <li>The <strong>Total</strong> booking concentrates on Meal Plan <strong>1</strong>.</li>
+            </ul>
+            <button onclick="chart4_update('Aviation')">Aviation</button>
+            <button onclick="chart4_update('Complementary')">Complementary</button>
+            <button onclick="chart4_update('Corporate')">Corporate</button>
+            <button onclick="chart4_update('Offline')">Offline</button>
+            <button onclick="chart4_update('Online')">Online</button>
+            <button onclick="chart4_update('Total')">Total</button>
+            <svg id="my_dataviz_chart4"></svg>
+            <script src="chart4.js"></script>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="heading">
+            Hotel Reservation Distribution by Room Types
+          </div>
+          <div class="content">
+            <ul>
+              <li>The <strong>Aviation</strong> booking concentrates on Room Type <strong>1 and 4</strong>.</li>
+              <li>The <strong>Total</strong> hotel reservation room type predominately on Room Type<strong>1</strong>.</li>
+            </ul>
+            <button onclick="chart3_update('Aviation')">Aviation</button>
+            <button onclick="chart3_update('Complementary')">Complementary</button>
+            <button onclick="chart3_update('Corporate')">Corporate</button>
+            <button onclick="chart3_update('Offline')">Offline</button>
+            <button onclick="chart3_update('Online')">Online</button>
+            <button onclick="chart3_update('Total')">Total</button>
+            <svg id="my_dataviz_chart3"></svg>
+            <script src="chart3.js"></script>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="heading">
+            Hotel Reservation Average Booking Price by Month
+          </div>
+          <div class="content">
+            <ul>
+              <li>The <strong>Complementary</strong> average booking price is zero and excluded from the comparision.</li>
+              <li>The <strong>Online</strong> average booking price is always higher than the other booking methods.</li>
+            </ul>
+            <button onclick="chart5_update('Aviation')">Aviation</button>
+            <button onclick="chart5_update('Corporate')">Corporate</button>
+            <button onclick="chart5_update('Offline')">Offline</button>
+            <button onclick="chart5_update('Online')">Online</button>
+            <button onclick="chart5_update('Total')">Total</button>
+            <svg id="my_dataviz_chart5"></svg>
+            <script src="chart5.js"></script>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="heading">
+            Conclusion
+          </div>
+          <div class="content">
+            <p>Hotel reservation by Aviation follows seasonality. We can observe very high reservations in April, May and October. Similarly, the reservation typically happens to certain days. </p>
+  
+            <p>The room type as well as meal plan type for Aviation also are very consistent. Aviation bookings only require Meal Plan 1 and Room Type 1 and 4. There are no other alternatives. </p>
+  
+            <p>For other bookings methods, we can observe a trend of having large reservations in October. However, the date distribution seems to be evenly spread among days. Like Aviation bookings, the mean plan 1 and room type 1 are commonly chosen. It might be because it is ranked the first and people would simply choose the first one. </p>
+
+            <p>Based on the average booking price, it turns out that offline and corporate booking gives much more competitive price as compared to online booking.</p>
+          </div>
+        </div>
+      </section>
+  
+      <section class="counter">
+        1 of 6
+      </section>
+  
+      <section class="navigation">
+        <button id="full-screen" class="btn-screen show">
+          <i class="fas fa-expand"></i>
+        </button>
+  
+        <button id="small-screen" class="btn-screen">
+          <i class="fas fa-compress"></i>
+        </button>
+  
+        <button id="left-btn" class="btn">
+          <i class="fas fa-solid fa-caret-left"></i>
+        </button>
+  
+        <button id="right-btn" class="btn">
+          <i class="fa-solid fa-caret-right"></i>
+        </button>
+      </section>
+    </div>
+  </div>
+<script src="main.js" type="text/javascript"></script>
+</body>
+</html>
