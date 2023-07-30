@@ -43,7 +43,7 @@ function chart3_update(selectedVar) {
   update_svg_3_y_label(selectedVar)
 
   // Parse the Data
-  d3.csv("data/room_types.csv", function(data) {
+  d3.csv("room_types.csv", function(data) {
     // X axis
     x.domain(data.map(function(d) { return d.room_type; }))
     xAxis3.transition().duration(1000).call(d3.axisBottom(x))
